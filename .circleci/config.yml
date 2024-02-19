@@ -1,34 +1,28 @@
 version: 2.1
 
+# Orbs are reusable packages of CircleCI configuration
+# that you may share across projects, enabling you to
+# create encapsulated, parameterized commands, jobs,
+# and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/2.0/orb-intro/
+orbs:
+  node: circleci/node@4.7
+  browser-tools: circleci/browser-tools@1.1.0
+
 jobs:
   test:
     docker:
-      - image: cimg/node:16.13.2  # Use a version compatible with Nightwatch
+      - image: cimg/node:lts-browsers
     steps:
       - checkout
-
-      # Install NVM and use Node.js version 16
+      - browser-tools/install-browser-tools
+      - node/install-packages
       - run:
-          name: Install Node.js with NVM
-          command: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install 16
-            nvm use 16
-
-      # Install dependencies
-      - run:
-          name: Install Dependencies
-          command: npm install
-
-      # Run Nightwatch tests
-      - run:
-          name: Run Nightwatch Tests
           command: npm run test
+      - store_test_results:
+          path: /tests_output
 
 workflows:
-  version: 2
-  test:
+  e2e-test:
     jobs:
       - test
