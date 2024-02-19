@@ -16,6 +16,7 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
+          npm install nightwatch-axe-verbose --save-dev
 
       # Run npm run test
       - run:
