@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:14
+
+    steps:
+      - checkout
+
+      # Install dependencies
+      - run:
+          name: Install Dependencies
+          command: npm install
+
+      # Run Nightwatch tests
+      - run:
+          name: Run Nightwatch Tests
+          command: npm test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
