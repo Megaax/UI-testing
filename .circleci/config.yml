@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:16  # Use a Node.js version available on CircleCI
+      - image: circleci/node:latest  # Use a Node.js version available on CircleCI
     steps:
       - checkout
 
