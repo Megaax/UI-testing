@@ -25,7 +25,7 @@ jobs:
       # Run Nightwatch tests
       - run:
           name: Run Nightwatch Tests
-          command: npm test -- --test ./test/mypage.js
+          command: npm run test
 
 workflows:
   version: 2
