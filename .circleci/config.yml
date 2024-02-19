@@ -22,10 +22,25 @@ jobs:
           name: Install Dependencies
           command: npm install
 
-      # Run Nightwatch tests
+      # Print Node.js version for debugging
+      - run:
+          name: Check Node.js Version
+          command: node --version
+
+      # Print NPM version for debugging
+      - run:
+          name: Check NPM Version
+          command: npm --version
+
+      # Print Nightwatch version for debugging
+      - run:
+          name: Check Nightwatch Version
+          command: npx nightwatch --version
+
+      # Run Nightwatch tests in verbose mode for debugging
       - run:
           name: Run Nightwatch Tests
-          command: npm test
+          command: npx nightwatch --env default --verbose
 
 workflows:
   version: 2
