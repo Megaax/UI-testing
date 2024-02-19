@@ -15,7 +15,7 @@ jobs:
       # Install Nightwatch version 8.5.5
       - run:
           name: Install Nightwatch 8.5.5
-          command: npm install -g nightwatch@8.5.5
+          command: npm install -g nightwatch@latest
 
       # Run npm run test
       - run:
