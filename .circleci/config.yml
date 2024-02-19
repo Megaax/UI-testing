@@ -3,24 +3,29 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:21.6.2  # Specify the Node.js version
     steps:
       - checkout
 
-      # Install NVM and use Node.js version 16
+      # Install NVM and use Node.js version 21.6.2
       - run:
           name: Install Node.js with NVM
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install 16
-            nvm use 16
+            nvm install 21.6.2
+            nvm use 21.6.2
 
-      # Install dependencies
+      # Install npm version 10.4.0
       - run:
-          name: Install Dependencies
-          command: npm install
+          name: Install npm version 10.4.0
+          command: npm install -g npm@10.4.0
+
+      # Install Nightwatch version 3.4.1
+      - run:
+          name: Install Nightwatch version 3.4.1
+          command: npm install -g nightwatch@3.4.1
 
       # Print Node.js version for debugging
       - run:
@@ -36,6 +41,11 @@ jobs:
       - run:
           name: Check Nightwatch Version
           command: npx nightwatch --version
+
+      # Install dependencies
+      - run:
+          name: Install Dependencies
+          command: npm install
 
       # Run Nightwatch tests in verbose mode for debugging
       - run:
