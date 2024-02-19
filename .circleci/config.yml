@@ -3,19 +3,19 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:21.6.2  # Specify the Node.js version
+      - image: circleci/node:16  # Use a Node.js version available on CircleCI
     steps:
       - checkout
 
-      # Install NVM and use Node.js version 21.6.2
+      # Install NVM and use Node.js version 16
       - run:
           name: Install Node.js with NVM
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install 21.6.2
-            nvm use 21.6.2
+            nvm install 16
+            nvm use 16
 
       # Install npm version 10.4.0
       - run:
