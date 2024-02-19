@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:latest  # Use a Node.js version available on CircleCI
+      - image: circleci/node:latest
     steps:
       - checkout
 
@@ -17,40 +17,15 @@ jobs:
             nvm install 16
             nvm use 16
 
-      # Install npm version 10.4.0
-      - run:
-          name: Install npm version 10.4.0
-          command: npm install -g npm@10.4.0
-
-      # Install Nightwatch version 3.4.1
-      - run:
-          name: Install Nightwatch version 3.4.1
-          command: npm install -g nightwatch@3.4.1
-
-      # Print Node.js version for debugging
-      - run:
-          name: Check Node.js Version
-          command: node --version
-
-      # Print NPM version for debugging
-      - run:
-          name: Check NPM Version
-          command: npm --version
-
-      # Print Nightwatch version for debugging
-      - run:
-          name: Check Nightwatch Version
-          command: npx nightwatch --version
-
       # Install dependencies
       - run:
           name: Install Dependencies
           command: npm install
 
-      # Run Nightwatch tests in verbose mode for debugging
+      # Run Nightwatch tests
       - run:
           name: Run Nightwatch Tests
-          command: npx nightwatch --env default --verbose
+          command: npm test
 
 workflows:
   version: 2
