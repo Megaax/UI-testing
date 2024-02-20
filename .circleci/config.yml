@@ -32,9 +32,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run:
-          name: Print Firefox version
-          command: firefox --version
+      # - run:
+      #     name: Print Firefox version
+      #     command: firefox --version
 
       - run:
           name: Install nightwatch-axe-verbose
