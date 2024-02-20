@@ -6,10 +6,11 @@ orbs:
 jobs:
   test:
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:16.15.0-browsers
     working_directory: ~/repo
 
     steps:
+      - browser-tools/install-browser-tools
       - checkout
 
       # Restore dependencies
