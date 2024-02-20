@@ -16,25 +16,14 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
-
-      # Install Chrome and ChromeDriver in user-specific directory
       - run:
-          name: Install Chrome and ChromeDriver
+          name: Install ChromeDriver
           command: |
-            apt-get update && apt-get install -y wget unzip
             CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
             wget -qP /tmp https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
             unzip -q /tmp/chromedriver_linux64.zip -d /tmp
             chmod +x /tmp/chromedriver
-            sudo mv /tmp/chromedriver /usr/local/bin/chromedriver
-            CHROME_PATH="/usr/local/bin/chrome"
-            wget -qP /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            dpkg -x /tmp/google-chrome-stable_current_amd64.deb /tmp/chrome
-            sudo mv /tmp/chrome/opt/google/chrome /opt/google/chrome
-            echo "CHROME_PATH=$CHROME_PATH" > /etc/environment
-            echo 'export PATH=$PATH:$CHROME_PATH' >> /etc/bash.bashrc
-
-      # Install nightwatch-axe-verbose
+            sudo mv /tmp/chromedriver ./chromedriver
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
