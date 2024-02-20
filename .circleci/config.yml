@@ -3,57 +3,35 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/node:16.15.0
+      - image: circleci/node:14
+    working_directory: ~/repo
+
     steps:
       - checkout
 
-      - run:
-          name: Update APT
-          command: sudo apt-get update
-
-      # Install NPM version 8.5.5
-      - run:
-          name: Install npm 8.5.5
-          command: npm install -g npm@8.5.5
+      # Restore dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
 
       - run:
-          name: Clear package cache and reinstall Firefox
-          command: |
-            sudo apt clean
-            sudo apt install --reinstall firefox
+          name: Install dependencies
+          command: npm install
 
-      # Install Nightwatch version 8.5.5
-      - run:
-          name: Install Nightwatch 8.5.5
-          command: npm install -g nightwatch@latest
+      # Save dependencies for future runs
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
-      # Install Firefox and GeckoDriver
+      # Run Jest tests
       - run:
-          name: Install Firefox and GeckoDriver
-          command: |
-            sudo apt-get install -y firefox
-            GECKODRIVER_VERSION=$(curl -sS https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r .tag_name)
-            curl -sS -o /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
-            tar -xzf /tmp/geckodriver.tar.gz -C /tmp || echo "Retrying tar extraction..." && sleep 1 && tar -xzf /tmp/geckodriver.tar.gz -C /tmp
-            chmod +x /tmp/geckodriver
-            sudo mv /tmp/geckodriver /usr/local/bin/geckodriver
-
-      # Print GeckoDriver version for debugging
-      - run:
-          name: Print GeckoDriver version
-          command: geckodriver --version
-
-      - run:
-          name: Install nightwatch-axe-verbose
-          command: npm install nightwatch-axe-verbose --save-dev
-
-      # Run npm run test with verbose output
-      - run:
-          name: Run Tests
-          command: npm run test -- --verbose
+          name: Run nightwatch tests
+          command: npm run test
 
 workflows:
   version: 2
-  test:
+  test_workflow:
     jobs:
       - test
