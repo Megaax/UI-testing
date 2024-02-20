@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Update APT
+          command: sudo apt-get update
+
       # Install NPM version 8.5.5
       - run:
           name: Install npm 8.5.5
