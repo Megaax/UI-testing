@@ -27,12 +27,6 @@ jobs:
           name: Install dependencies
           command: npm install
 
-      - run:
-          name: Install Firefox and Geckodriver
-          command: |
-            browser-tools setup-firefox
-
-      # Save dependencies for future runs
       - save_cache:
           paths:
             - node_modules
@@ -45,18 +39,6 @@ jobs:
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
-
-      # Use expect to automate npm init nightwatch
-      - run:
-          name: Initialize Nightwatch
-          command: |
-            expect -c '
-              spawn npm init nightwatch
-              expect "\n\n\n"
-              expect "\rtest"
-              send "\r"
-              interact
-            '
 
       # Run Nightwatch tests
       - run:
