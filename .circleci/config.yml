@@ -38,34 +38,38 @@
 #   test:
 #     jobs:
 #       - test
-version: 2.1
 
-orbs:
-  node: circleci/node@4.7
-  browser-tools: circleci/browser-tools@1.4.4
+# .circleci/config.yml
+version: 2.1
 
 jobs:
   test:
     docker:
-      - image: cimg/node:lts-browsers
+      - image: cimg/node:16.15.0
     steps:
       - checkout
-      - browser-tools/install-browser-tools
-      - node/install-packages
+
+      # Install NPM version 8.5.5
       - run:
-          name: Install Latest Chrome
-          command: |
-            curl -o /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo dpkg -i /tmp/chrome.deb
-            sudo apt-get install -f
-            google-chrome-stable --version
+          name: Install npm 8.5.5
+          command: npm install -g npm@8.5.5
+
+      # Install Nightwatch version 8.5.5
       - run:
-          name: Run Tests
-          command: npm run test
-      - store_test_results:
-          path: /tests_output
+          name: Install Nightwatch 8.5.5
+          command: npm install -g nightwatch@latest
+
+      - run:
+          name: Install nightwatch-axe-verbose
+          command: npm install nightwatch-axe-verbose --save-dev
+
+      # Run npm run test on Firefox
+      - run:
+          name: Run Tests on Firefox
+          command: npm run test -- --env firefox
 
 workflows:
-  e2e-test:
+  version: 2
+  test:
     jobs:
       - test
