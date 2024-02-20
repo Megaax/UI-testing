@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "sudo npx nightwatch --env firefox"
+    "test": "npx nightwatch --env firefox"
   },
   "keywords": [],
   "author": "",

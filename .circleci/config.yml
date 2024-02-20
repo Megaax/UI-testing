@@ -34,6 +34,10 @@ jobs:
       - run:
           name: Print Firefox version
           command: firefox --version
+
+      - run:
+          name: Install nightwatch-axe-verbose
+          command: npm install nightwatch-axe-verbose --save-dev
       # Run Jest tests
       - run:
           name: Run nightwatch tests
