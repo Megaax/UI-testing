@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  browser-tools: circleci/browser-tools@1.4.7
+
 jobs:
   test:
     docker:
@@ -25,11 +28,10 @@ jobs:
           command: npm install
 
       - run:
-          name: Install Firefox
+          name: Install Firefox and Geckodriver
           command: |
-            sudo apt-get update
-            sudo apt-get install -y firefox
-      
+            browser-tools setup-firefox
+
       # Save dependencies for future runs
       - save_cache:
           paths:
@@ -39,35 +41,22 @@ jobs:
       - run:
           name: Print Firefox version
           command: firefox --version
-      - run:
-          name: Install Geckodriver
-          command: |
-            GECKODRIVER_VERSION="v0.34.0"
-            curl -sS -o /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
-            tar -xzf /tmp/geckodriver.tar.gz -C /tmp
-            chmod +x /tmp/geckodriver
-            sudo mv /tmp/geckodriver /usr/local/bin/geckodriver
-      # - run:
-      #     name: Install expect
-      #     command: sudo apt-get update && sudo apt-get install -y expect
+
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
 
-      # Initialize Nightwatch configuration
-      # - run:
-      #     name: Initialize Nightwatch
-      #     command:  |
-      #       expect -c '
-      #         spawn npm init nightwatch
-      #         expect "\n\n\n"
-      #         expect "\n\n\n"
-      #         expect "\n\n\n"
-      #         expect "\n\n\n"
-      #         expect "\rtest"
-      #         send "\r"
-      #         interact
-      #       '
+      # Use expect to automate npm init nightwatch
+      - run:
+          name: Initialize Nightwatch
+          command: |
+            expect -c '
+              spawn npm init nightwatch
+              expect "\n\n\n"
+              expect "\rtest"
+              send "\r"
+              interact
+            '
 
       # Run Nightwatch tests
       - run:
