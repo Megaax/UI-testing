@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
-          
+
       - run:
           name: Install dependencies
           command: sudo apt-get install -y libnss3
@@ -33,6 +33,7 @@ jobs:
             unzip -q /tmp/chromedriver.zip -d /tmp
             chmod +x /tmp/chromedriver
             sudo mv /tmp/chromedriver /usr/local/bin/chromedriver
+            chmod +x /usr/local/bin/chromedriver
 
       # Print ChromeDriver version for debugging
       - run:
