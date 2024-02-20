@@ -20,10 +20,10 @@ jobs:
           name: Install ChromeDriver
           command: |
             CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.chromium.org/downloads | grep -oP 'ChromeDriver \K[0-9.]+')
-      wget -qP /tmp https://chromedriver.chromium.org/downloads/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-      unzip -q /tmp/chromedriver_linux64.zip -d /tmp
-      chmod +x /tmp/chromedriver
-      sudo mv /tmp/chromedriver ./chromedriver
+            wget -qP /tmp https://chromedriver.chromium.org/downloads/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+            unzip -q /tmp/chromedriver_linux64.zip -d /tmp
+            chmod +x /tmp/chromedriver
+            sudo mv /tmp/chromedriver ./chromedriver
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
