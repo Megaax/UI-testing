@@ -53,6 +53,9 @@ jobs:
             expect -c '
               spawn npm init nightwatch
               expect "\n\n\n"
+              expect "\n\n\n"
+              expect "\n\n\n"
+              expect "\n\n\n"
               expect "\rtest"
               send "\r"
               interact
