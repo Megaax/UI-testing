@@ -53,6 +53,14 @@ jobs:
       - browser-tools/install-browser-tools
       - node/install-packages
       - run:
+          name: Install Latest Chrome
+          command: |
+            curl -o /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i /tmp/chrome.deb
+            sudo apt-get install -f
+            google-chrome-stable --version
+      - run:
+          name: Run Tests
           command: npm run test
       - store_test_results:
           path: /tests_output
