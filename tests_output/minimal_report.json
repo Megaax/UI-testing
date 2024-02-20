@@ -1,1 +1,1 @@
-{"modules":{"mypage":{"modulePath":"D:\\Software-shift\\nightwatch\\test\\mypage.js","status":"pass"}}}
+{"modules":{"searchTest":{"modulePath":"D:\\Software-shift\\nightwatch\\test\\searchTest.js","status":"pass"},"mypage":{"modulePath":"D:\\Software-shift\\nightwatch\\test\\mypage.js","status":"pass"}}}

@@ -1,18 +1,6 @@
 module.exports = {
     '@tags': ['contactForm'],
 
-    'Search for dress': function (browser) {
-
-        const page = browser.page.contactForm();
-
-        page
-            .navigate()
-            .setValue('@searchQuery', 'dress')
-            .click('@searchButton')
-            .assert.urlContains('search_query=dress')
-        browser.end();
-    },
-
     'Test valid form submission': function (browser) {
         const email = 'validemail@example.com';
         const message = 'This is a valid message';
