@@ -20,6 +20,8 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
+
+      # Install ChromeDriver
       - run:
           name: Install ChromeDriver
           command: |
@@ -27,12 +29,18 @@ jobs:
             curl -sS -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
             unzip -q /tmp/chromedriver.zip -d /tmp
             chmod +x /tmp/chromedriver
-            sudo mv /tmp/chromedriver ./chromedriver
+            sudo mv /tmp/chromedriver /usr/local/bin/chromedriver
+
+      # Print ChromeDriver version for debugging
+      - run:
+          name: Print ChromeDriver version
+          command: chromedriver --version
+
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
 
-      # Run npm run test
+      # Run npm run test with verbose output
       - run:
           name: Run Tests
           command: npm run test
