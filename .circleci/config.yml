@@ -24,7 +24,10 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
+          
+      - run:
+          name: Print Firefox version
+          command: firefox --version
       # Run Jest tests
       - run:
           name: Run nightwatch tests
