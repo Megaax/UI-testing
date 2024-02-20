@@ -19,8 +19,8 @@ jobs:
       - run:
           name: Install ChromeDriver
           command: |
-            CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            wget -qP /tmp https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+            CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.chromium.org/downloads | grep -oP 'Latest release: \K.+')
+            wget -qP /tmp https://chromedriver.chromium.org/downloads/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
             unzip -q /tmp/chromedriver_linux64.zip -d /tmp
             chmod +x /tmp/chromedriver
             sudo mv /tmp/chromedriver ./chromedriver
