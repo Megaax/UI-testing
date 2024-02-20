@@ -39,27 +39,27 @@ jobs:
       - run:
           name: Print Firefox version
           command: firefox --version
-      - run:
-          name: Install expect
-          command: sudo apt-get update && sudo apt-get install -y expect
+      # - run:
+      #     name: Install expect
+      #     command: sudo apt-get update && sudo apt-get install -y expect
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
 
       # Initialize Nightwatch configuration
-      - run:
-          name: Initialize Nightwatch
-          command:  |
-            expect -c '
-              spawn npm init nightwatch
-              expect "\n\n\n"
-              expect "\n\n\n"
-              expect "\n\n\n"
-              expect "\n\n\n"
-              expect "\rtest"
-              send "\r"
-              interact
-            '
+      # - run:
+      #     name: Initialize Nightwatch
+      #     command:  |
+      #       expect -c '
+      #         spawn npm init nightwatch
+      #         expect "\n\n\n"
+      #         expect "\n\n\n"
+      #         expect "\n\n\n"
+      #         expect "\n\n\n"
+      #         expect "\rtest"
+      #         send "\r"
+      #         interact
+      #       '
 
       # Run Nightwatch tests
       - run:
