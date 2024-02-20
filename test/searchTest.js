@@ -13,6 +13,4 @@ module.exports = {
             .assert.urlContains('search_query=dress')
         browser.end();
     },
-
-
 };
