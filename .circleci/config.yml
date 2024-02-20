@@ -20,7 +20,10 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
-
+          
+      - run:
+          name: Install dependencies
+          command: sudo apt-get install -y libnss3
       # Install ChromeDriver
       - run:
           name: Install ChromeDriver
