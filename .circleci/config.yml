@@ -15,6 +15,11 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
 
+      # Install Node.js 16
+      - run:
+          name: Install Node.js
+          command: nvm install 16.15.0 && nvm use 16.15.0
+
       - run:
           name: Install dependencies
           command: npm install
@@ -24,16 +29,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y firefox
-      - run:
-          name: Install GeckoDriver
-          command: |
-            if [ ! -f /usr/local/bin/geckodriver ]; then
-              GECKODRIVER_VERSION="v0.34.0"
-              curl -sS -o /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux-aarch64.tar.gz
-              tar -xzf /tmp/geckodriver.tar.gz -C /tmp
-              chmod +x /tmp/geckodriver
-              sudo mv /tmp/geckodriver /usr/local/bin/geckodriver
-            fi
+      
       # Save dependencies for future runs
       - save_cache:
           paths:
@@ -47,7 +43,13 @@ jobs:
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
-      # Run Jest tests
+
+      # Initialize Nightwatch configuration
+      - run:
+          name: Initialize Nightwatch
+          command: npm init nightwatch
+
+      # Run Nightwatch tests
       - run:
           name: Run nightwatch tests
           command: npm run test
