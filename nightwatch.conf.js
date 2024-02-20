@@ -27,10 +27,10 @@ module.exports = {
 
   // See https://nightwatchjs.org/guide/extending-nightwatch/adding-plugins.html
   plugins: [],
-  
+
   // See https://nightwatchjs.org/guide/concepts/test-globals.html
   globals_path: '',
-  
+
   webdriver: {},
 
   test_workers: {
@@ -51,14 +51,14 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome'
       },
-      
+
       webdriver: {
         start_process: true,
         server_path: ''
       },
-      
+
     },
-    
+
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
@@ -84,13 +84,13 @@ module.exports = {
         ]
       }
     },
-    
+
   },
-  
+
   usage_analytics: {
     enabled: true,
     log_path: './logs/analytics',
     client_id: '7d1fb87c-ff1d-421e-8577-e49f2ce6ce0e'
   }
-  
+
 };

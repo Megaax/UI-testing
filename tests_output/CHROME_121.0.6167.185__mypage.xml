@@ -5,37 +5,28 @@
 
   <testsuite name="mypage"
     errors="0" failures="0" hostname="" id="" package="mypage" skipped="0"
-    tests="9" time="241.9" timestamp="">
+    tests="9" time="237.4" timestamp="">
   
-    <testcase name="Search for dress" classname="mypage" time="11.20" assertions="1">
+    <testcase name="Search for dress" classname="mypage" time="11.57" assertions="1">
 
     
     </testcase>
   
-    <testcase name="Test valid form submission" classname="mypage" time="14.34" assertions="2">
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="Test Minimal valid form submission" classname="mypage" time="13.33" assertions="2">
+    <testcase name="Test valid form submission" classname="mypage" time="14.36" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Test invalid form submission - missing email" classname="mypage" time="13.43" assertions="3">
-
-    
+    <testcase name="Test Minimal valid form submission" classname="mypage" time="13.12" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Test invalid form submission - missing message" classname="mypage" time="13.64" assertions="3">
+    <testcase name="Test invalid form submission - missing email" classname="mypage" time="12.87" assertions="3">
 
     
 
@@ -44,7 +35,7 @@
     
     </testcase>
   
-    <testcase name="Test invalid form submission - missing subject" classname="mypage" time="13.77" assertions="3">
+    <testcase name="Test invalid form submission - missing message" classname="mypage" time="13.72" assertions="3">
 
     
 
@@ -53,7 +44,7 @@
     
     </testcase>
   
-    <testcase name="Test Invalid Form Submission - Missing Email and Message" classname="mypage" time="13.45" assertions="3">
+    <testcase name="Test invalid form submission - missing subject" classname="mypage" time="14.28" assertions="3">
 
     
 
@@ -62,14 +53,23 @@
     
     </testcase>
   
-    <testcase name="Test Form Submission Without Uploading a File" classname="mypage" time="13.17" assertions="2">
+    <testcase name="Test Invalid Form Submission - Missing Email and Message" classname="mypage" time="13.17" assertions="3">
+
+    
 
     
 
     
     </testcase>
   
-    <testcase name="Test Form Submission With Wrong File Extension" classname="mypage" time="14.63" assertions="3">
+    <testcase name="Test Form Submission Without Uploading a File" classname="mypage" time="12.87" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Test Form Submission With Wrong File Extension" classname="mypage" time="12.75" assertions="3">
 
     
 

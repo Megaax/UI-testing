@@ -1,3 +1,43 @@
+# version: 2.1
+
+# jobs:
+#   test:
+#     docker:
+#       - image: cimg/node:16.15.0
+#     steps:
+#       - checkout
+
+#       # Install NPM version 8.5.5
+#       - run:
+#           name: Install npm 8.5.5
+#           command: npm install -g npm@8.5.5
+
+#       # Install Nightwatch version 8.5.5
+#       - run:
+#           name: Install Nightwatch 8.5.5
+#           command: npm install -g nightwatch@latest
+#       - run:
+#           name: Install ChromeDriver
+#           command: |
+#             CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+#             wget -qP /tmp https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+#             unzip -q /tmp/chromedriver_linux64.zip -d /tmp
+#             chmod +x /tmp/chromedriver
+#             mv /tmp/chromedriver ./chromedriver
+#       - run:
+#           name: Install nightwatch-axe-verbose
+#           command: npm install nightwatch-axe-verbose --save-dev
+
+#       # Run npm run test
+#       - run:
+#           name: Run Tests
+#           command: npm run test
+
+# workflows:
+#   version: 2
+#   test:
+#     jobs:
+#       - test
 version: 2.1
 
 jobs:
@@ -16,6 +56,8 @@ jobs:
       - run:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
+
+      # Install ChromeDriver
       - run:
           name: Install ChromeDriver
           command: |
@@ -23,7 +65,9 @@ jobs:
             wget -qP /tmp https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
             unzip -q /tmp/chromedriver_linux64.zip -d /tmp
             chmod +x /tmp/chromedriver
-            mv /tmp/chromedriver ./chromedriver
+            sudo mv /tmp/chromedriver /usr/local/bin/chromedriver
+
+      # Install nightwatch-axe-verbose
       - run:
           name: Install nightwatch-axe-verbose
           command: npm install nightwatch-axe-verbose --save-dev
