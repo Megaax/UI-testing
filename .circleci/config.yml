@@ -16,6 +16,12 @@ jobs:
           name: Install npm 8.5.5
           command: npm install -g npm@8.5.5
 
+      - run:
+          name: Clear package cache and reinstall Firefox
+          command: |
+            sudo apt clean
+            sudo apt install --reinstall firefox
+
       # Install Nightwatch version 8.5.5
       - run:
           name: Install Nightwatch 8.5.5
