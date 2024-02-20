@@ -17,11 +17,12 @@ jobs:
           name: Install Nightwatch 8.5.5
           command: npm install -g nightwatch@latest
 
-      # Install Chrome and ChromeDriver
+      # Install Chrome and ChromeDriver with apt-get workaround
       - run:
           name: Install Chrome and ChromeDriver
           command: |
-            apt-get update
+            mkdir -p /var/lib/apt/lists/partial
+            apt-get update -o APT::List-Cleanup=0
             apt-get install -y wget unzip
             wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
             sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
