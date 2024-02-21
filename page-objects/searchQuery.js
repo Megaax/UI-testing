@@ -8,6 +8,7 @@ module.exports = {
 
         searchQuery: '#search_query_top',
         searchButton: 'button[name="submit_search"]',
+        searchButtn: 'button[nae="submit_search"]',
 
     },
     commands: [{
